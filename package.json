@@ -1,0 +1,26 @@
+{
+  "name": "react-e-commerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeetu-sah/node-react-e-commerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeetu-sah/node-react-e-commerce/issues"
+  },
+  "homepage": "https://github.com/jeetu-sah/node-react-e-commerce#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "proxy": "http://localhost:3001"
+  
+}
