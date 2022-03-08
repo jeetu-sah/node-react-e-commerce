@@ -1,2 +1,14 @@
 Installation Docs.
 https://dev.to/pratham10/how-to-set-up-a-node-js-express-server-for-react-2fja
+
+
+Front Template Theme
+https://bootstrap-ecommerce.com/bootstrap5-ecommerce/page-index-1.html
+
+
+
+<---React router-->
+1. npm i react-router
+2. npm i react-router-dom
+3.
+<---End-->
