@@ -40,7 +40,7 @@ class Home extends React.Component {
         <div class="container mt-5">
           <div class="row">
             <div class="col-sm-4">
-              <Link to="/admin/login" className="btn btn-primary">Admin Login</Link>
+              <Link to="/login" className="btn btn-primary">Admin Login</Link>
             </div>
           </div>
         </div>

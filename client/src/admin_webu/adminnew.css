@@ -1,9 +1,0 @@
-.table-responsive {
-    display: table;}
-@media (max-width: 768px){
-.table-responsive {
-    display: block;}
-html, body {overflow-x: hidden;}
-}
-@media (max-width: 576px){
-}
