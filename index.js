@@ -1,25 +1,46 @@
 require("dotenv").config();
 const express = require("express");
+var logger = require("morgan");
+
 const router = express.Router();
 
 const request = require("request");
 const mongoose = require("mongoose");
-const passport = require("passport");
 const axios = require("axios");
-
-const app = express();
-
-app.use(express.urlencoded({ extended: true }));
-const config = require("./config/config");
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-//database connection
-const mongoDbConnection = require("./database/db_config");
+var bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { Mongoose } = require("mongoose");
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+const config = require("./config/config");
+
+//init passport
+//app.set('trust proxy', 1) 
+app.use(session({
+  secret: '93d6232e078ed9ed0a2004f4e64b36d77e55d188',
+  resave: true,
+  saveUninitialized: false,
+  rolling: true,
+  cookie: { secure: false },
+  //cookie: { maxAge: 60 * 60 * 1000 },
+  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/node_practice' })
+}))
+const passport = require("passport");
+var jwt = require("jsonwebtoken");
+require("./config/passport")(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(logger("dev"));
+
+
+
+//database connection
+const mongoDbConnection = require("./database/db_config");
+
 
 //include routes files.
 require("./routes/web")(app);
