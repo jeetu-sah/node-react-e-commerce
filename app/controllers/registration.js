@@ -8,20 +8,37 @@ var config = require('../../config/config'); // get db config file
 
 const newRegistration = async (req, res, next) => {
   //try {
-    const user = await addUser(req.body);
-    if (user) {
-      console.log(user)
-     // if user is found and password is right create a token
-      var token = jwt.sign({ data: user }, config.secret, {
-                            expiresIn: 604800, // 1 week
-                          });
-      return res.json({ success: true, token: "JWT " + token, user: user });
+    let user = await User.findOne({ email: req.body.email});
+    if (!user) {
+        const user = await addUser(req.body);
+        if (user) {
+          // if user is found and password is right create a token
+          var token = jwt.sign({ data: user }, config.secret, {
+                                expiresIn: 604800, // 1 week
+                              });
+          return res.json({ success: true, token: "JWT " + token, user: user });
+        }
+    } else {
+       return res.json({ status: 100, msg: "This Email is already exists !!!" });
     }
+};
+
+const signin = async (req, res, next) => {
+  console.log("req");
+  console.log(req.body);
+
+  //return res.json({ success:req });
+    // try{
+
+    // }
+    // catch (error) {
+
+    // }
 };
 
 //export controller functions
 module.exports = {
-  //getAllTea,
+  signin,
   newRegistration,
   //deleteAllTea,
   //getOneTea,

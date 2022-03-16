@@ -15,10 +15,10 @@ const userSchema = mongoose.Schema(
       minlenght: [2, "Last name must be greater than from 2 character."],
       maxlenght: [15, "Last name must be greater than from 15 character."],
     },
-    email: {
-      type: String,
-      required: [true, "Last Name is required"],
-      maxlenght: [150, "Last name must be greater than from 15 character."],
+    mobile: {
+      type: Number,
+      required: [true, "Mobile is required"],
+      maxlenght: [11, "Mobile Number must be greater than from 10."],
       unique: true,
     },
     email: {

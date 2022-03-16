@@ -9,9 +9,7 @@ module.exports = function (app) {
   //     res.send("Got a POST request");
   //   });
 
-  app.post(
-    "/registration",
-    registration.newRegistration
-  );
+  app.post("/registration", registration.newRegistration);
+  app.post("/login", registration.signin);
 
 };
