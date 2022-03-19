@@ -5,6 +5,7 @@ import About from "./components/front/About";
 import Contact from "./components/front/Contact";
 import Home from "./components/front/Home";
 import Login from "./components/admin/Login";
+import Register from "./components/admin/Register";
 
 class App extends React.Component {
   render() {
@@ -15,8 +16,7 @@ class App extends React.Component {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/login" element={<Login />} />
-
-          
+          <Route exact path="/register" element={<Register />} />
         </Routes>
       </>
     );

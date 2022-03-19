@@ -18,7 +18,6 @@ const userSchema = mongoose.Schema(
     mobile: {
       type: Number,
       required: [true, "Mobile is required"],
-      maxlenght: [11, "Mobile Number must be greater than from 10."],
       unique: true,
     },
     email: {

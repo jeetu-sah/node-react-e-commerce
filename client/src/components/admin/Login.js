@@ -94,9 +94,9 @@ class Login extends React.Component{
                           </a>
                         </p>
                         <p className="mb-0">
-                          <a href="register.html" className="text-center">
+                          <Link to="/register" className="text-center">
                             Register a new membership
-                          </a>
+                          </Link>
                         </p>
                       </div>
                     </div>

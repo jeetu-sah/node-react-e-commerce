@@ -4,3 +4,10 @@
   left: 60%;
   transform: translate(-50%, -50%);
 }
+
+.registration_backround{
+  background-color: #eee;
+}
+.b_radius{
+  border-radius: 25px;
+}
