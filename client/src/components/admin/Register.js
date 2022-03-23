@@ -33,7 +33,7 @@ class Register extends React.Component {
     let url = `${window.$base_url}${window.$api.post.registration}`;
     window.$axios.post(url, this.state).then((res) => {
       this.setState({msgStatus: true});
-      console.log(res);
+      
       if (res.data.status === 200) {
         this.setState({ msgClass: "alert-success" });
         this.setState({ msg: "Registration successfully." });
@@ -64,6 +64,7 @@ class Register extends React.Component {
   render() {
     return (
       <>
+       
         <section className="vh-100 registration_backround">
           <div className="container h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
@@ -159,7 +160,7 @@ class Register extends React.Component {
                             <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                             <div className="form-outline flex-fill mb-0">
                               <input
-                                type="password"
+                                type="text"
                                 id="password"
                                 name="password"
                                 className="form-control"

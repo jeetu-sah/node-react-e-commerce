@@ -3,6 +3,7 @@ const User = require("../../modules/users/Users");
 const { addUser } = require("../../modules/users/service/userServices");
 var jwt = require("jsonwebtoken");
 var config = require('../../config/config'); // get db config file
+const bcrypt = require("bcrypt");
 
 
 
@@ -33,16 +34,25 @@ const newRegistration = async (req, res, next) => {
 };
 
 const signin = async (req, res, next) => {
-  console.log("req");
-  console.log(req.body);
-
-  //return res.json({ success:req });
-    // try{
-
-    // }
-    // catch (error) {
-
-    // }
+  let user = await User.findOne({ email: req.body.email });
+  if(user){
+    if ( await (bcrypt.compareSync(req.body.password, user.password)) ) {
+      
+       var token = jwt.sign({ data: user }, config.secret, {
+         expiresIn: 604800, // 1 week
+       });
+       return res.json({
+         status: 200,
+         jwt_token: "JWT " + token,
+         token: token,
+         user: user,
+       });
+    } else {
+      return res.json({ status: 100, msg: "Password does not matched !!!" });
+    }
+  }else{
+      return res.json({ status: 100, msg: "User does not exists in our database!!!" });
+  }
 };
 
 //export controller functions

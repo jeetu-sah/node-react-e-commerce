@@ -3,5 +3,5 @@ https://reactrouter.com/docs/en/v6/getting-started/installation (React Router do
 https://create-react-app.dev/docs/adding-bootstrap/ (Bootstrap docs)
 1. npm i react-router
 2. npm i react-router-dom
-3.
+3.  npm install bootstrap@^4.0
 <---End-->
