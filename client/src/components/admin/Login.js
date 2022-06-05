@@ -5,10 +5,6 @@ import { Redirect, Route } from "react-router";
 import Home from "../front/Home";
 
 
-
-
-
-
 import "../../admin_webu/dist/css/adminlte.min.css";
 
 class Login extends React.Component {
@@ -39,7 +35,8 @@ class Login extends React.Component {
         
           window.$axios.post(loginUrl, this.state).then((res) => {
             if (res.data.status === 200) {
-               console.log(res.data.status);
+                console.log("Login successfully") 
+              //console.log(res.data.status);
                this.setState({ redirectDashboard: true });
               
             } else {
@@ -65,7 +62,11 @@ class Login extends React.Component {
             <div className="col-sm-6 centered">
               <div className="login-box">
                 <div className="login-logo">
-                  {this.state.redirectDashboard === true ? (<Navigate to="/"></Navigate>) : "not"}
+                  {this.state.redirectDashboard === true ? (
+                    <Navigate to="/admin/dashboard"></Navigate>
+                  ) : (
+                    ""
+                  )}
                   <Link to="/login">
                     <b>Admin</b>LTE
                   </Link>

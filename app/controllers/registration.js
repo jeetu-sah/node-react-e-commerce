@@ -47,6 +47,7 @@ const signin = async (req, res, next) => {
          token: token,
          user: user,
        });
+       
     } else {
       return res.json({ status: 100, msg: "Password does not matched !!!" });
     }

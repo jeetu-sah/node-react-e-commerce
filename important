@@ -16,9 +16,51 @@ https://kb.objectrocket.com/mongo-db/or-in-mongoose-1018
 <---React router-->
 1. npm i react-router
 2. npm i react-router-dom
-3.
+
 <---End-->
 
 
 JWT authnetiaction.
 https://www.section.io/engineering-education/how-to-build-authentication-api-with-jwt-token-in-nodejs/
+
+
+// run project 
+For react projects.
+1. cd client
+2. npm run start
+
+For node js projects. 
+1. nodemon index.js
+
+
+Admin Theme template. 
+https://startbootstrap.com/theme/sb-admin-2
+
+
+React js UI frameworks
+https://mui.com/material-ui/react-drawer/
+
+
+Express js Tools
+https://www.youtube.com/watch?v=5RrhT280GXg&list=PLbGui_ZYuhigerSlDF_v1t1mM2iGomXnq&index=5
+
+
+
+Form validation. 
+https://www.npmjs.com/package/node-input-validator#simple-example
+
+
+For Generate Express application 
+
+https://expressjs.com/en/starter/generator.html
+
+
+E-commerce Demo 
+https://www.jrecommerce.com/demo.php
+
+Admin Credential: 
+https://www.ecomdeveloper.com/demo/admin/
+username = demo
+pwd: pass
+
+

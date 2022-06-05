@@ -13,11 +13,17 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const { Mongoose } = require("mongoose");
 
+const multer = require("multer");
+
+const upload = multer({ dest: "uploads/" });
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 const config = require("./config/config");
+
+
 
 //init passport
 //app.set('trust proxy', 1) 
@@ -33,7 +39,6 @@ app.use(
   })
 );
 
-
 const passport = require("passport");
 var jwt = require("jsonwebtoken");
 require("./config/passport")(passport);
@@ -42,13 +47,14 @@ app.use(passport.session());
 app.use(logger("dev"));
 app.use(cors());
 
-
-
 //database connection
 const mongoDbConnection = require("./database/db_config");
 
 //include routes files.
 require("./routes/web")(app);
+//load routes file
+//const productcategory = require('./routes/productCategory');
+//app.use("/product_category", productcategory);
 
 
 app.get("/api", (req, res) => {
