@@ -1,10 +1,74 @@
-import React from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+} from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
 
+
+// this is a hook, but we work also with classes
+  function ActionButtonRender(params) {
+    console.log(params)
+    return (
+      <span className="my-renderer">
+        <Link to="#" data-action="delete" variant="danger">
+          <i class="fas fa-trash"></i>
+        </Link>
+        &nbsp;&nbsp;
+        <Link to="#" data-action="edit" variant="primary">
+          <i class="fas fa-edit"></i>
+        </Link>
+      </span>
+    );
+  }
 
 function Categories(props) {
+
+  const [rowData, setCategoryList] = useState([]);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    console.log("its working");
+    window.$axios
+      .get(`${window.$base_url}${window.$api.get.list_category}`)
+      .then((res) => {
+        setCategoryList(res.data.response);
+      })
+      .catch(function (error) {
+        // handle error
+        alert("something went wrong, please try again");
+        console.log("error catch");
+        console.log(error);
+      });
+  }, []);
+
+  var checkboxSelection = function (params) {
+    // we put checkbox on the name if we are not doing grouping
+    return params.columnApi.getRowGroupColumns().length === 0;
+  };
+  var headerCheckboxSelection = function (params) {
+    // we put checkbox on the name if we are not doing grouping
+    return params.columnApi.getRowGroupColumns().length === 0;
+  };
+
+  const [columnDefs] = useState([
+    {
+      field: "category_name",
+      headerName: "Image",
+      checkboxSelection: checkboxSelection,
+      headerCheckboxSelection: headerCheckboxSelection,
+    },
+    { field: "category_name", headerName: "Category Name" },
+    { field: "parent_category", headerName: "Parent Category" },
+    { field: "keyword", headerName: "Keyword" },
+    {
+      headerName: "Action",
+      cellRenderer: ActionButtonRender,
+    },
+  ]);
+
   return (
     <>
       <div className="content-wrapper">
@@ -14,7 +78,7 @@ function Categories(props) {
               <div className="col-sm-6">
                 <h1 className="m-0 text-dark">Categories</h1>
               </div>
-              <div className="col-sm-12">
+              <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item">
                     <Link to="#">Home</Link>
@@ -49,14 +113,17 @@ function Categories(props) {
                     <h5 className="m-0">Category List</h5>
                   </div>
                   <div className="card-body">
-                    <h6 className="card-title">Special title treatment</h6>
-                    <p className="card-text">
-                      With supporting text below as a natural lead-in to
-                      additional content.
-                    </p>
-                    <Link to="#" className="btn btn-primary">
-                      Go somewhere
-                    </Link>
+                    <div
+                      className="ag-theme-alpine"
+                      style={{ height: 400, width: "100%" }}
+                    >
+                      <AgGridReact
+                        rowData={rowData}
+                        columnDefs={columnDefs}
+                        pagination={true}
+                        paginationAutoPageSize={true}
+                      ></AgGridReact>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,10 +1,12 @@
 {
   "get": {
-    "products_create": "api/catalog/product/create"
+    "products_create": "api/catalog/product/create",
+    "list_category": "catalog/category/list"
   },
   "post": {
     "base_url": "http://127.0.0.1:8000/",
     "registration": "registration",
-    "login": "login"
+    "login": "login",
+    "create_category": "catalog/category/create"
   }
 }

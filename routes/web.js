@@ -16,14 +16,13 @@ module.exports = function (app) {
     //     res.send("Got a POST request");
     //   });
   
-  app.post("/registration", registration.newRegistration);
-  app.post("/login", registration.signin);
+  app.post("/api/registration", registration.newRegistration);
+  app.post("/api/login", registration.signin);
   //manufacturer
-  app.post("/manufacturer/create", manufacturer.create);
-  app.get("/manufacturer/list", manufacturer.index);
-
+  app.post("/api/manufacturer/create", manufacturer.create);
+  app.get("/api/manufacturer/list", manufacturer.index);
 
   //Load routes files
-  app.use("/product_category", productcategory);
-  app.use("/catalog", catalogRoutes);
+  app.use("/api/product_category", productcategory);
+  app.use("/api/catalog", catalogRoutes);
 };
