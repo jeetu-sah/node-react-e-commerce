@@ -139,7 +139,7 @@ function Create(props) {
     { label: "Pulp Fiction", year: 1994 },
     { label: "The Good, the Bad and the Ugly", year: 1966 },
     { label: "Fight Club", year: 1999 },
-    { label: "The Lord of the Rings: The Fellowship of the Ring",year: 2001 },
+    { label: "The Lord of the Rings: The Fellowship of the Ring", year: 2001 },
     {
       label: "Star Wars: Episode V - The Empire Strikes Back",
       year: 1980,
@@ -149,7 +149,7 @@ function Create(props) {
     {
       label: "The Lord of the Rings: The Two Towers",
       year: 2002,
-    }
+    },
   ];
 
   return (
@@ -160,16 +160,14 @@ function Create(props) {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Categories</h1>
+                  <h1 className="m-0 text-dark">Filters</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item">
                       <Link to="#">Home</Link>
                     </li>
-                    <li className="breadcrumb-item active">
-                      Create Categories
-                    </li>
+                    <li className="breadcrumb-item active">Create Filters</li>
                   </ol>
                 </div>
               </div>
@@ -205,11 +203,10 @@ function Create(props) {
                 <div className="col-lg-12">
                   <div className="card card-primary card-outline">
                     <div className="card-header">
-                      <h5 className="m-0">Create Category</h5>
+                      <h5 className="m-0">Create Filters</h5>
                     </div>
                     <div className="card-body">
                       <AlertMsg alert={alertMsg} />
-
                       <Box>
                         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                           <Tabs
@@ -217,91 +214,16 @@ function Create(props) {
                             onChange={handleChangeTab}
                             aria-label="basic tabs example"
                           >
-                            <Tab label="General" {...a11yProps(0)} />
-                            <Tab label="Data" {...a11yProps(1)} />
-                            <Tab label="SEO" {...a11yProps(2)} />
-                            <Tab label="Design" {...a11yProps(3)} />
+                            <Tab label="Filter Group" />
                           </Tabs>
                         </Box>
                         <TabPanel value={activeTab} index={0}>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="category-name"
+                              id="filter_group_name"
                               value={category.category_name}
-                              onChange={handleChange("category_name")}
-                              label="Category Name"
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-title"
-                              value={category.meta_tag_title}
-                              onChange={handleChange("meta_tag_title")}
-                              label="Meta Tag Title"
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-description"
-                              value={category.meta_tag_description}
-                              onChange={handleChange("meta_tag_description")}
-                              label="Meta Tag Description"
-                              multiline
-                              rows={4}
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-keywords"
-                              value={category.meta_tag_keyword}
-                              onChange={handleChange("meta_tag_keyword")}
-                              label="Meta Tag Keywords"
-                              multiline
-                              rows={4}
-                            />
-                          </FormControl>
-                        </TabPanel>
-
-                        <TabPanel value={activeTab} index={1}>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <Autocomplete
-                              disablePortal
-                              id="parent-category"
-                              getOptionLabel={(option) =>
-                                option.category_name || ""
-                              }
-                              onChange={(event, value) =>
-                                handleChangeParentCategory(value._id)
-                              }
-                              options={parentCategoryList}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  label="Parent Category"
-                                />
-                              )}
-                            />
-                          </FormControl>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Stores"
-                              value={category.stores}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Top"
-                              value={category.top}
-                            />
-                          </FormGroup>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="columns"
-                              value={category.columns}
-                              onChange={handleChange("columns")}
-                              label="Columns"
+                              onChange={handleChange("filter_group_name")}
+                              label="Filter Group Name"
                             />
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
@@ -312,49 +234,47 @@ function Create(props) {
                               label="Sort Order"
                             />
                           </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <InputLabel id="demo-simple-select-helper-label">
-                              Status
-                            </InputLabel>
-                            <Select
-                              labelId="demo-simple-select-helper-label"
-                              id="demo-simple-select-helper"
-                              value={category.status}
-                              label="Status"
-                              onChange={handleChange("status")}
-                            >
-                              <MenuItem value={1}>Enabled</MenuItem>
-                              <MenuItem value={2}>Disabled</MenuItem>
-                            </Select>
-                          </FormControl>
                         </TabPanel>
-                        <TabPanel value={activeTab} index={2}>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="keyword"
-                              value={category.keyword}
-                              onChange={handleChange("keyword")}
-                              label="keywords"
-                            />
-                          </FormControl>
-                        </TabPanel>
-                        <TabPanel value={activeTab} index={3}>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <Autocomplete
-                              disablePortal
-                              id="layout-override"
-                              onChange={(event, value) =>
-                                handleChangeLayoutOverride(value)
-                              }
-                              options={top100Films}
-                              renderInput={(params) => (
+                      </Box>
+                      <Box>
+                        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                          <Tabs value={activeTab}>
+                            <Tab label="Filter Values" />
+                          </Tabs>
+                        </Box>
+                        <TabPanel value={activeTab} index={0}>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <FormControl fullWidth sx={{ m: 1 }}>
                                 <TextField
-                                  {...params}
-                                  label="Layout Override"
+                                  id="category-name"
+                                  value={category.category_name}
+                                  onChange={handleChange("category_name")}
+                                  label="Category Name"
                                 />
-                              )}
-                            />
-                          </FormControl>
+                              </FormControl>
+                            </div>
+                            <div class="col-sm-4">
+                              <FormControl fullWidth sx={{ m: 1 }}>
+                                <TextField
+                                  id="category-name"
+                                  value={category.category_name}
+                                  onChange={handleChange("category_name")}
+                                  label="Category Name"
+                                />
+                              </FormControl>
+                            </div>
+                            <div class="col-sm-4">
+                             <FormControl sx={{ m: 1 }}>
+                                <Button
+                                    variant="success"
+                                    type="button"
+                                >
+                                    <i className="fas fa-plus"></i>
+                                </Button>
+                              </FormControl>
+                            </div>
+                          </div>
                         </TabPanel>
                       </Box>
                     </div>

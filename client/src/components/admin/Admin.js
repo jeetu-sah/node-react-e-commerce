@@ -9,7 +9,9 @@ import Categories from "./catalog/categories/Categories";
 import CreateCategory from "./catalog/categories/Create";
 import ProductsList from "./catalog/products/ProductsList";
 import RecuringProfiles from "./catalog/recuring-profiles/RecuringProfiles";
+import RecuringProfilesCreate from "./catalog/recuring-profiles/Create";
 import Filters from  "./catalog/filters/List";
+import FiltersCreate from "./catalog/filters/Create";
 import AttributeList from "./catalog/attributes/attribute/List";
 import AttributeGroupList from "./catalog/attributes/attribute_group/List";
 import OptionsList from "./catalog/options/List";
@@ -26,16 +28,22 @@ function Admin(props) {
           <Route
             exact
             path="/catalog/categories/create"
-            element={<CreateCategory/>}
+            element={<CreateCategory />}
           />
 
           <Route exact path="/catalog/products" element={<ProductsList />} />
           <Route
             exact
-            path="/catalog/recuring-profile"
+            path="/catalog/recurring-profile"
             element={<RecuringProfiles />}
           />
+          <Route
+            exact
+            path="/catalog/recurring-profile/create"
+            element={<RecuringProfilesCreate />}
+          />
           <Route exact path="/catalog/filters" element={<Filters />} />
+          <Route exact path="/catalog/filters/create" element={<FiltersCreate />} />
           <Route exact path="/catalog/attribute" element={<AttributeList />} />
           <Route
             exact
@@ -43,7 +51,6 @@ function Admin(props) {
             element={<AttributeGroupList />}
           />
           <Route exact path="/catalog/options" element={<OptionsList />} />
-         
         </Routes>
 
         <Footer />

@@ -50,7 +50,6 @@ const list = async (req, res, next) => {
        msg: error.message,
      });
   }
-
 };
 
 //export controller functions

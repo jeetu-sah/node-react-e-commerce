@@ -65,32 +65,31 @@ function Create(props) {
     setValue(newValue);
   };
 
-  const [category, setValues] = React.useState({
-    category_name: "Footwear",
-    meta_tag_title: "Footwear",
-    meta_tag_description: "Footwear Descriptions",
-    meta_tag_keyword: "Footwear keyword",
-    parent_category: null,
-    stores: 1,
-    top: 1,
-    columns: 1,
-    sort_order: 1,
+  const [recurring, setValues] = React.useState({
+    name: "Demo recurring Name",
+    price: 0,
+    duration: 0,
+    cycle: 1,
+    frequency: null,
     status: 1,
-    keyword: "Component",
-    layout_override: "1994",
-    category_files: "",
+    trial_price: 0,
+    trial_duration: 0,
+    trial_cycle: 1,
+    trial_frequency: 1,
+    trial_status: 1,
+    sort_order: 0,
   });
 
   const handleChange = (prop) => (event) => {
-    setValues({ ...category, [prop]: event.target.value });
+    setValues({ ...recurring, [prop]: event.target.value});
   };
 
   const handleChangeLayoutOverride = (event) => {
-    setValues({ ...category, layout_override: event.year });
+    setValues({ ...recurring, layout_override: event.year});
   };
 
   const handleChangeParentCategory = (event) => {
-    setValues({ ...category, parent_category: event });
+    setValues({ ...recurring, parent_category: event});
   };
 
   //get parent category.
@@ -113,7 +112,7 @@ function Create(props) {
   const saveCategoryDetails = (e, props) => {
     e.preventDefault();
     window.$axios
-      .post(`${window.$base_url}${window.$api.post.create_category}`, category)
+      .post(`${window.$base_url}${window.$api.post.create_category}`, recurring)
       .then((res) => {
         if (res.data.status === 200) {
           setAlertMsg({ status: 200, msg: res.data.msg });
@@ -128,30 +127,6 @@ function Create(props) {
       });
   };
 
-  // Top 100 films as rated by IMDb users.
-  const top100Films = [
-    { label: "The Shawshank Redemption", year: 1994 },
-    { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
-    { label: "The Good, the Bad and the Ugly", year: 1966 },
-    { label: "Fight Club", year: 1999 },
-    { label: "The Lord of the Rings: The Fellowship of the Ring",year: 2001 },
-    {
-      label: "Star Wars: Episode V - The Empire Strikes Back",
-      year: 1980,
-    },
-    { label: "Forrest Gump", year: 1994 },
-    { label: "Inception", year: 2010 },
-    {
-      label: "The Lord of the Rings: The Two Towers",
-      year: 2002,
-    }
-  ];
-
   return (
     <>
       <form id="categoryForm">
@@ -160,7 +135,7 @@ function Create(props) {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Categories</h1>
+                  <h1 className="m-0 text-dark">Recurring Profiles</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
@@ -168,7 +143,7 @@ function Create(props) {
                       <Link to="#">Home</Link>
                     </li>
                     <li className="breadcrumb-item active">
-                      Create Categories
+                      Create Recurring Profiles
                     </li>
                   </ol>
                 </div>
@@ -205,11 +180,10 @@ function Create(props) {
                 <div className="col-lg-12">
                   <div className="card card-primary card-outline">
                     <div className="card-header">
-                      <h5 className="m-0">Create Category</h5>
+                      <h5 className="m-0">Add Recurring Profile</h5>
                     </div>
                     <div className="card-body">
                       <AlertMsg alert={alertMsg} />
-
                       <Box>
                         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                           <Tabs
@@ -218,99 +192,76 @@ function Create(props) {
                             aria-label="basic tabs example"
                           >
                             <Tab label="General" {...a11yProps(0)} />
-                            <Tab label="Data" {...a11yProps(1)} />
-                            <Tab label="SEO" {...a11yProps(2)} />
-                            <Tab label="Design" {...a11yProps(3)} />
+                            <Tab label="Recurring Profile" {...a11yProps(1)} />
+                            <Tab label="Trial Profile" {...a11yProps(2)} />
                           </Tabs>
                         </Box>
                         <TabPanel value={activeTab} index={0}>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="category-name"
-                              value={category.category_name}
-                              onChange={handleChange("category_name")}
-                              label="Category Name"
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-title"
-                              value={category.meta_tag_title}
-                              onChange={handleChange("meta_tag_title")}
-                              label="Meta Tag Title"
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-description"
-                              value={category.meta_tag_description}
-                              onChange={handleChange("meta_tag_description")}
-                              label="Meta Tag Description"
-                              multiline
-                              rows={4}
-                            />
-                          </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="meta-tag-keywords"
-                              value={category.meta_tag_keyword}
-                              onChange={handleChange("meta_tag_keyword")}
-                              label="Meta Tag Keywords"
-                              multiline
-                              rows={4}
+                              id="name"
+                              value={recurring.name}
+                              onChange={handleChange("name")}
+                              label="Name"
                             />
                           </FormControl>
                         </TabPanel>
-
                         <TabPanel value={activeTab} index={1}>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <Autocomplete
-                              disablePortal
-                              id="parent-category"
-                              getOptionLabel={(option) =>
-                                option.category_name || ""
-                              }
-                              onChange={(event, value) =>
-                                handleChangeParentCategory(value._id)
-                              }
-                              options={parentCategoryList}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  label="Parent Category"
-                                />
-                              )}
-                            />
-                          </FormControl>
                           <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Stores"
-                              value={category.stores}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Top"
-                              value={category.top}
-                            />
+                            <FormControl fullWidth sx={{ m: 1 }}>
+                              <TextField
+                                id="price"
+                                value={recurring.price}
+                                onChange={handleChange("price")}
+                                type="number"
+                                InputLabelProps={{
+                                  shrink: true,
+                                }}
+                                label="Price"
+                              />
+                            </FormControl>
                           </FormGroup>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="columns"
-                              value={category.columns}
-                              onChange={handleChange("columns")}
-                              label="Columns"
+                              id="Duration"
+                              value={recurring.duration}
+                              onChange={handleChange("duration")}
+                              label="Duration"
+                              type="number"
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
                             />
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="sort-order"
-                              value={category.sort_order}
-                              onChange={handleChange("sort_order")}
-                              label="Sort Order"
+                              id="cycle"
+                              value={recurring.cycle}
+                              onChange={handleChange("cycle")}
+                              label="Cycle"
+                              type="number"
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
                             />
+                          </FormControl>
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <InputLabel id="demo-simple-select-helper-label">
+                              Frequency
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-helper-label"
+                              id="demo-simple-select-helper"
+                              value={recurring.status}
+                              label="Frequency"
+                              onChange={handleChange("status")}
+                            >
+                              <MenuItem value={1}>Day</MenuItem>
+                              <MenuItem value={2}>Week</MenuItem>
+                              <MenuItem value={3}>Semi month</MenuItem>
+                              <MenuItem value={4}>Month</MenuItem>
+                              <MenuItem value={5}>Year</MenuItem>
+                            </Select>
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <InputLabel id="demo-simple-select-helper-label">
@@ -319,7 +270,7 @@ function Create(props) {
                             <Select
                               labelId="demo-simple-select-helper-label"
                               id="demo-simple-select-helper"
-                              value={category.status}
+                              value={recurring.status}
                               label="Status"
                               onChange={handleChange("status")}
                             >
@@ -331,28 +282,70 @@ function Create(props) {
                         <TabPanel value={activeTab} index={2}>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="keyword"
-                              value={category.keyword}
-                              onChange={handleChange("keyword")}
-                              label="keywords"
+                              id="trial_price"
+                              value={recurring.trial_price}
+                              onChange={handleChange("trial_price")}
+                              label="Trial price"
                             />
                           </FormControl>
-                        </TabPanel>
-                        <TabPanel value={activeTab} index={3}>
                           <FormControl fullWidth sx={{ m: 1 }}>
-                            <Autocomplete
-                              disablePortal
-                              id="layout-override"
-                              onChange={(event, value) =>
-                                handleChangeLayoutOverride(value)
-                              }
-                              options={top100Films}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  label="Layout Override"
-                                />
-                              )}
+                            <TextField
+                              id="trial_duration"
+                              value={recurring.frequency}
+                              onChange={handleChange("trial_duration")}
+                              label="Trial duration"
+                              type="Number"
+                            />
+                          </FormControl>
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <TextField
+                              id="trial_cycle"
+                              value={recurring.keyword}
+                              onChange={handleChange("keyword")}
+                              label="Trial cycle"
+                              type="Number"
+                            />
+                          </FormControl>
+
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <InputLabel id="demo-simple-select-helper-label">
+                              Trial frequency
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-helper-label"
+                              id="demo-simple-select-helper"
+                              value={recurring.status}
+                              label="Trial frequency"
+                              onChange={handleChange("status")}
+                            >
+                              <MenuItem value={1}>Day</MenuItem>
+                              <MenuItem value={2}>Week</MenuItem>
+                              <MenuItem value={3}>Semi month</MenuItem>
+                              <MenuItem value={4}>Month</MenuItem>
+                              <MenuItem value={5}>Year</MenuItem>
+                            </Select>
+                          </FormControl>
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <InputLabel id="demo-simple-select-helper-label">
+                              Trial status
+                            </InputLabel>
+                            <Select
+                              labelId="demo-simple-select-helper-label"
+                              id="demo-simple-select-helper"
+                              value={recurring.status}
+                              label="Trial status"
+                              onChange={handleChange("status")}
+                            >
+                              <MenuItem value={1}>Enabled</MenuItem>
+                              <MenuItem value={2}>Disabled</MenuItem>
+                            </Select>
+                          </FormControl>
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <TextField
+                              id="sort_order"
+                              value={recurring.keyword}
+                              onChange={handleChange("keyword")}
+                              label="Sort Order"
                             />
                           </FormControl>
                         </TabPanel>

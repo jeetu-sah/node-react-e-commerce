@@ -59,7 +59,7 @@ function Sidebar(props) {
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="/admin/catalog/recuring-profile"
+                      to="/admin/catalog/recurring-profile"
                       className="nav-link"
                     >
                       <i className="far fa-circle nav-icon"></i>

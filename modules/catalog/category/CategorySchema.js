@@ -7,6 +7,9 @@ const categorySchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+    },
     keyword: {
       type: String,
       required: true,
@@ -25,7 +28,8 @@ const categorySchema = mongoose.Schema(
       type: String,
     },
     parent_category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "categories",
     },
     sort_order: {
       type: String,
