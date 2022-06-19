@@ -20,7 +20,6 @@ function ActionButtonRender(params) {
 
 function List(props) {
   const [rowData, setCategoryList] = useState([]);
-
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     console.log("its working");

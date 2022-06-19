@@ -82,20 +82,38 @@ function Create(props) {
     tracking_code: "https://jswebsolutions.in/",
     commission: 10,
     tax_id: 10,
+    payment_method: 1,
+    paypal_email_account: "",
+    cheque_payee_name: "",
+    bank_name: "",
+    branch_number: "",
+    swift_code: "",
+    account_name: "",
+    account_number: "",
     payment_status: 2,
-    address: [{ item: 1 }, { item: 1 }],
+    address: [{ item: 1, addressValue: "281 B Damodar Nagar, Barra kanpur" }],
   });
 
   const appendAddressField = () => {
     const AddressObject = user.address;
-    AddressObject.push({ item: 1 });
+    AddressObject.push({ item: AddressObject.length + 1, addressValue: "" });
     user.address = AddressObject;
-
-    setUserValues({...user, address: AddressObject});
+    setUserValues({ ...user, address: AddressObject });
   };
 
   const handleChange = (prop) => (event) => {
     setUserValues({ ...user, [prop]: event.target.value });
+  };
+
+  const handleAddressChange = (index, address) => {
+    const newAddressObject = user.address.map((obj) => {
+      // if id equals 2, update country property
+      if (obj.item === index) {
+        return { ...obj, addressValue: address };
+      }
+      return obj;
+    });
+    setUserValues({ ...user, address: newAddressObject });
   };
 
   //get parent category.
@@ -133,6 +151,95 @@ function Create(props) {
       });
   };
 
+  const removeAddressFields = (i) => {
+    const userAddress = user.address;
+    userAddress.splice(i, 1);
+    setUserValues({ ...user, address: userAddress });
+  };
+
+  const AddressFieldName = (i) => {
+    return `Address ${i + 1}`;
+  };
+
+  const handleChangePaymentMethod = (value) => {
+    console.log(value);
+    setUserValues({ ...user, payment_method: value });
+  };
+
+  const paymentDetailsOption = () => {
+    if (user.payment_method == 1) {
+      return (
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <TextField
+            id="cheque_payee_name"
+            value={user.cheque_payee_name}
+            onChange={handleChange("cheque_payee_name")}
+            label="Cheque Payee Name"
+          />
+        </FormControl>
+      );
+    }
+    if (user.payment_method == 2) {
+      return (
+        <FormControl fullWidth sx={{ m: 1 }}>
+          <TextField
+            id="cheque_payee_name"
+            value={user.paypal_email_account}
+            onChange={handleChange("paypal_email_account")}
+            label="PayPal Email Account"
+          />
+        </FormControl>
+      );
+    }
+    if (user.payment_method == 3) {
+      return (
+        <>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <TextField
+              id="bank_name"
+              value={user.bank_name}
+              onChange={handleChange("bank_name")}
+              label="Bank Name"
+            />
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <TextField
+              id="branch_number"
+              value={user.branch_number}
+              onChange={handleChange("branch_number")}
+              label="ABA/BSB number (Branch Number)"
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <TextField
+              id="swift_code"
+              value={user.swift_code}
+              onChange={handleChange("swift_code")}
+              label="SWIFT Code"
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <TextField
+              id="account_name"
+              value={user.account_name}
+              onChange={handleChange("account_name")}
+              label="Account Name"
+            />
+          </FormControl>
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <TextField
+              id="account_number"
+              value={user.account_number}
+              onChange={handleChange("account_number")}
+              label="Account Number"
+            />
+          </FormControl>
+        </>
+      );
+    }
+  };
+
   return (
     <>
       <form id="categoryForm">
@@ -166,10 +273,7 @@ function Create(props) {
                       &nbsp;&nbsp;
                     </li>
                     <li>
-                      <Link
-                        to="/admin/catalog/categories"
-                        className="btn btn-primary"
-                      >
+                      <Link to="/admin/customers" className="btn btn-primary">
                         <i className="fas fa-times"></i>
                       </Link>
                     </li>
@@ -360,7 +464,9 @@ function Create(props) {
                               row
                               aria-labelledby="demo-row-radio-buttons-group-label"
                               name="row-radio-buttons-group"
-                              onChange={handleChange("payment_method")}
+                              onChange={(e) =>
+                                handleChangePaymentMethod(e.target.value)
+                              }
                               defaultValue="1"
                             >
                               <FormControlLabel
@@ -380,14 +486,8 @@ function Create(props) {
                               />
                             </RadioGroup>
                           </FormControl>
-                          <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="cheque_payee_name"
-                              value={user.cheque_payee_name}
-                              onChange={handleChange("cheque_payee_name")}
-                              label="Cheque Payee Name"
-                            />
-                          </FormControl>
+                          {paymentDetailsOption()}
+
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <InputLabel id="demo-simple-select-helper-label">
                               Payment Status
@@ -418,22 +518,31 @@ function Create(props) {
                               </Button>
                             </div>
                           </div>
-                          {user.address.map(() => (
-                            <div className="row">
+                          {user.address.map((item, i) => (
+                            <div className="row" key={i}>
                               <div className="col-sm-8">
                                 <FormControl fullWidth sx={{ m: 1 }}>
                                   <TextField
                                     id="address"
-                                    value={user.keyword}
-                                    onChange={handleChange("address")}
-                                    label="Address"
+                                    value={item.addressValue}
+                                    onChange={(e) =>
+                                      handleAddressChange(
+                                        item.item,
+                                        e.target.value
+                                      )
+                                    }
+                                    label={AddressFieldName(i)}
                                     multiline
                                     rows={4}
                                   />
                                 </FormControl>
                               </div>
                               <div className="col-sm-2">
-                                <Button variant="danger" type="button">
+                                <Button
+                                  variant="danger"
+                                  type="button"
+                                  onClick={() => removeAddressFields(i)}
+                                >
                                   <i className="fas fa-minus"></i>
                                 </Button>
                               </div>
