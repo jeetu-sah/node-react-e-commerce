@@ -108,25 +108,25 @@ function Sidebar(props) {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="#" className="nav-link">
+                    <Link to="/admin/catalog/manufacturer" className="nav-link">
                       <i className="far fa-circle nav-icon"></i>
                       <p>Manufacturers</p>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="#" className="nav-link">
+                    <Link to="/admin/catalog/download" className="nav-link">
                       <i className="far fa-circle nav-icon"></i>
                       <p>Downloads</p>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="#" className="nav-link">
+                    <Link to="/admin/catalog/review" className="nav-link">
                       <i className="far fa-circle nav-icon"></i>
                       <p>Reviews</p>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="#" className="nav-link">
+                    <Link to="/admin/catalog/information" className="nav-link">
                       <i className="far fa-circle nav-icon"></i>
                       <p>Information</p>
                     </Link>
@@ -135,7 +135,7 @@ function Sidebar(props) {
               </li>
 
               <li className="nav-item has-treeview">
-                <Link to="#" className="nav-link">
+                <Link to="/admin/layouts/design" className="nav-link">
                   <i className="nav-icon far fa-envelope"></i>
                   <p>
                     Design
@@ -229,14 +229,14 @@ function Sidebar(props) {
                 </Link>
                 <ul className="nav nav-treeview">
                   <li className="nav-item">
-                    <Link to="pages/examples/login.html" className="nav-link">
+                    <Link to="/admin/customers" className="nav-link">
                       <i className="far fa-circle nav-icon"></i>
                       <p>Customers</p>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="pages/examples/register.html"
+                      to="/admin/customers/customers-groups"
                       className="nav-link"
                     >
                       <i className="far fa-circle nav-icon"></i>
@@ -245,7 +245,7 @@ function Sidebar(props) {
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="pages/examples/forgot-password.html"
+                      to="/admin/customers/customers-approvals"
                       className="nav-link"
                     >
                       <i className="far fa-circle nav-icon"></i>

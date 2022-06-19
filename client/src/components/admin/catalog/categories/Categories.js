@@ -10,7 +10,6 @@ import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
 // this is a hook, but we work also with classes
   function ActionButtonRender(params) {
-    console.log(params)
     return (
       <span className="my-renderer">
         <Link to="#" data-action="delete" variant="danger">

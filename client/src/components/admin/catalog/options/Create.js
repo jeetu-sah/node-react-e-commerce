@@ -53,9 +53,7 @@ function Create(props) {
 
   const [activeTab, setValue] = React.useState(0);
 
-  const [filterValueField, setfilterValueField] = React.useState([
-    { item: 1 },
-  ]);
+  const [filterValueField, setfilterValueField] = React.useState([{ item: 1 }]);
 
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
@@ -100,15 +98,13 @@ function Create(props) {
   };
 
   const appendFilterValueFields = (e) => {
-
-    if(filterValueField.length < 10){
-        const newFieldSet = { item: (filterValueField.length + 1)};
-        setfilterValueField([...filterValueField, newFieldSet]);  
-    }  else{
-        alert("Field value cant add more than 10.")
+    if (filterValueField.length < 10) {
+      const newFieldSet = { item: filterValueField.length + 1 };
+      setfilterValueField([...filterValueField, newFieldSet]);
+    } else {
+      alert("Field value cant add more than 10.");
     }
-    
-  }
+  };
 
   return (
     <>
@@ -118,14 +114,14 @@ function Create(props) {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Filters</h1>
+                  <h1 className="m-0 text-dark">Options</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
                     <li className="breadcrumb-item">
                       <Link to="#">Home</Link>
                     </li>
-                    <li className="breadcrumb-item active">Create Filters</li>
+                    <li className="breadcrumb-item active">Create Options</li>
                   </ol>
                 </div>
               </div>
@@ -161,7 +157,7 @@ function Create(props) {
                 <div className="col-lg-12">
                   <div className="card card-primary card-outline">
                     <div className="card-header">
-                      <h5 className="m-0">Create Filters</h5>
+                      <h5 className="m-0">Create Options</h5>
                     </div>
                     <div className="card-body">
                       <AlertMsg alert={alertMsg} />
@@ -172,7 +168,7 @@ function Create(props) {
                             onChange={handleChangeTab}
                             aria-label="basic tabs example"
                           >
-                            <Tab label="Filter Group" />
+                            <Tab label="Options" />
                           </Tabs>
                         </Box>
                         <TabPanel value={activeTab} index={0}>
@@ -197,11 +193,10 @@ function Create(props) {
                       <Box>
                         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                           <Tabs value={activeTab}>
-                            <Tab label="Filter Values" />
+                            <Tab label="Options Values" />
                           </Tabs>
                         </Box>
                         <TabPanel value={activeTab} index={0}>
-
                           {filterValueField.map(() => (
                             <div class="row">
                               <div class="col-sm-4">

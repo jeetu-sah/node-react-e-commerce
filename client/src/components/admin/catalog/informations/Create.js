@@ -132,11 +132,7 @@ function Create(props) {
   const top100Films = [
     { label: "The Shawshank Redemption", year: 1994 },
     { label: "The Godfather", year: 1972 },
-    { label: "The Godfather: Part II", year: 1974 },
-    { label: "The Dark Knight", year: 2008 },
-    { label: "12 Angry Men", year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: "Pulp Fiction", year: 1994 },
+    { label: "The Godfather: Part II", year: 1974 }
   ];
 
   return (
@@ -147,7 +143,7 @@ function Create(props) {
             <div className="container-fluid">
               <div className="row mb-2">
                 <div className="col-sm-6">
-                  <h1 className="m-0 text-dark">Categories</h1>
+                  <h1 className="m-0 text-dark">Informations</h1>
                 </div>
                 <div className="col-sm-6">
                   <ol className="breadcrumb float-sm-right">
@@ -155,7 +151,7 @@ function Create(props) {
                       <Link to="#">Home</Link>
                     </li>
                     <li className="breadcrumb-item active">
-                      Create Categories
+                      Create Information
                     </li>
                   </ol>
                 </div>
@@ -192,7 +188,7 @@ function Create(props) {
                 <div className="col-lg-12">
                   <div className="card card-primary card-outline">
                     <div className="card-header">
-                      <h5 className="m-0">Create Category</h5>
+                      <h5 className="m-0">Create Information</h5>
                     </div>
                     <div className="card-body">
                       <AlertMsg alert={alertMsg} />
@@ -216,7 +212,18 @@ function Create(props) {
                               id="category-name"
                               value={category.category_name}
                               onChange={handleChange("category_name")}
-                              label="Category Name"
+                              label="Information Title"
+                            />
+                          </FormControl>
+
+                          <FormControl fullWidth sx={{ m: 1 }}>
+                            <TextField
+                              id="meta-tag-description"
+                              value={category.meta_tag_description}
+                              onChange={handleChange("meta_tag_description")}
+                              label="Description"
+                              multiline
+                              rows={4}
                             />
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
@@ -229,8 +236,8 @@ function Create(props) {
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="meta-tag-description"
-                              value={category.meta_tag_description}
+                              id="meta_tag_description"
+                              value={category.meta_tag_keyword}
                               onChange={handleChange("meta_tag_description")}
                               label="Meta Tag Description"
                               multiline
@@ -239,7 +246,7 @@ function Create(props) {
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField
-                              id="meta-tag-keywords"
+                              id="meta_tag_keyword"
                               value={category.meta_tag_keyword}
                               onChange={handleChange("meta_tag_keyword")}
                               label="Meta Tag Keywords"
@@ -251,45 +258,22 @@ function Create(props) {
 
                         <TabPanel value={activeTab} index={1}>
                           <FormControl fullWidth sx={{ m: 1 }}>
-                            <Autocomplete
-                              disablePortal
-                              id="parent-category"
-                              getOptionLabel={(option) =>
-                                option.category_name || ""
-                              }
-                              onChange={(event, value) =>
-                                handleChangeParentCategory(value._id)
-                              }
-                              options={parentCategoryList}
-                              renderInput={(params) => (
-                                <TextField
-                                  {...params}
-                                  label="Parent Category"
-                                />
-                              )}
-                            />
+                            <FormGroup>
+                              <FormControlLabel
+                                control={<Checkbox defaultChecked />}
+                                label="Stores"
+                                value={category.stores}
+                              />
+                            </FormGroup>
                           </FormControl>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Stores"
-                              value={category.stores}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <FormControlLabel
-                              control={<Checkbox defaultChecked />}
-                              label="Top"
-                              value={category.top}
-                            />
-                          </FormGroup>
                           <FormControl fullWidth sx={{ m: 1 }}>
-                            <TextField
-                              id="columns"
-                              value={category.columns}
-                              onChange={handleChange("columns")}
-                              label="Columns"
-                            />
+                            <FormGroup>
+                              <FormControlLabel
+                                control={<Checkbox defaultChecked />}
+                                label="Bottom"
+                                value={category.top}
+                              />
+                            </FormGroup>
                           </FormControl>
                           <FormControl fullWidth sx={{ m: 1 }}>
                             <TextField

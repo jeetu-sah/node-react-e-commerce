@@ -4,7 +4,6 @@ import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
 
 // this is a hook, but we work also with classes
 function ActionButtonRender(params) {
-  console.log(params);
   return (
     <span className="my-renderer">
       <Link to="#" data-action="delete" variant="danger">
@@ -56,6 +55,10 @@ function List(props) {
     { field: "category_name", headerName: "Category Name" },
     { field: "parent_category", headerName: "Parent Category" },
     { field: "keyword", headerName: "Keyword" },
+    {
+      headerName: "Action",
+      cellRenderer: ActionButtonRender,
+    },
   ]);
 
   return (
@@ -65,16 +68,14 @@ function List(props) {
           <div className="container-fluid">
             <div className="row mb-2">
               <div className="col-sm-6">
-                <h1 className="m-0 text-dark">Attribute Group</h1>
+                <h1 className="m-0 text-dark">Reviews</h1>
               </div>
               <div className="col-sm-6">
                 <ol className="breadcrumb float-sm-right">
                   <li className="breadcrumb-item">
                     <Link to="#">Home</Link>
                   </li>
-                  <li className="breadcrumb-item active">
-                    Attribute Group page
-                  </li>
+                  <li className="breadcrumb-item active">Reviews page</li>
                 </ol>
               </div>
             </div>
@@ -83,12 +84,13 @@ function List(props) {
                 <ol className="breadcrumb float-sm-right">
                   <li>
                     <Link
-                      to="/admin/catalog/attribute-groups/create"
+                      to="/admin/catalog/review/create"
                       className="btn btn-primary"
                     >
                       <i className="fas fa-plus"></i>
                     </Link>
                   </li>
+                  {/* <li className="breadcrumb-item active">Categories page</li> */}
                 </ol>
               </div>
             </div>
@@ -100,7 +102,7 @@ function List(props) {
               <div className="col-lg-12">
                 <div className="card card-primary card-outline">
                   <div className="card-header">
-                    <h5 className="m-0">Attribute Group List</h5>
+                    <h5 className="m-0">Reviews List</h5>
                   </div>
                   <div className="card-body">
                     <div
