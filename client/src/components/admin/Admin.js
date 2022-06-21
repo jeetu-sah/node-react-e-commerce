@@ -30,6 +30,11 @@ import DesignLayout from "./layout/design/List";
 import DesignLayoutCreate from "./layout/design/Create";
 import CustomersList from "./customers/customer/List";
 import CustomersCreate from "./customers/customer/Create";
+import CustomersGroupList from "./customers/customer_group/List";
+import CustomersGroupCreate from "./customers/customer_group/Create";
+import CustomersApprovalsList from "./customers/customer_approvals/List";
+import CustomFieldsList from "./customers/custom_fields/List";
+import CustomFieldsCreate from "./customers/custom_fields/Create";
 
 function Admin(props) {
   return (
@@ -128,12 +133,27 @@ function Admin(props) {
           <Route
             exact
             path="/customers/customers-groups"
-            element={<CustomersList />}
+            element={<CustomersGroupList />}
+          />
+          <Route
+            exact
+            path="/customers/customers-groups/create"
+            element={<CustomersGroupCreate />}
           />
           <Route
             exact
             path="/customers/customers-approvals"
-            element={<CustomersList />}
+            element={<CustomersApprovalsList />}
+          />
+          <Route
+            exact
+            path="/customers/custom-fields"
+            element={<CustomFieldsList />}
+          />
+          <Route
+            exact
+            path="/customers/custom-fields/create"
+            element={<CustomFieldsCreate />}
           />
         </Routes>
 

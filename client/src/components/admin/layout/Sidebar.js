@@ -254,7 +254,7 @@ function Sidebar(props) {
                   </li>
                   <li className="nav-item">
                     <Link
-                      to="pages/examples/forgot-password.html"
+                      to="/admin/customers/custom-fields"
                       className="nav-link"
                     >
                       <i className="far fa-circle nav-icon"></i>

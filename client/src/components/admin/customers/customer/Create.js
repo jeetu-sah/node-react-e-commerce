@@ -162,7 +162,6 @@ function Create(props) {
   };
 
   const handleChangePaymentMethod = (value) => {
-    console.log(value);
     setUserValues({ ...user, payment_method: value });
   };
 
