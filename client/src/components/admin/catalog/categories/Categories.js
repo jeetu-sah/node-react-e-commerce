@@ -5,6 +5,15 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
+import { useSelector, useDispatch } from "react-redux";
+//import the reducer file
+import {
+  categoryList,
+  categoryDetail,
+  addCategory,
+} from "./../../../../app/services/reducers/CategoriesReducer";
+
+
 
 
 
@@ -24,6 +33,12 @@ import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
   }
 
 function Categories(props) {
+  //get the data from reducer file. by the use of useSelector hook get the data from reducer.
+  const categoryList = useSelector(
+    (state) => state.CategoriesReducer.customerList
+  );
+  console.log("counter category variable");
+  console.log(categoryList);
 
   const [rowData, setCategoryList] = useState([]);
 

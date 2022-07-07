@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react"; // the AG Grid React Component
+import { useSelector } from 'react-redux'
+
+//import CustomerReducer from "../components/admin/customers/customer/CustomerReducer";
+
 
 // this is a hook, but we work also with classes
 function ActionButtonRender(params) {
-  console.log(params);
+
   return (
     <span className="my-renderer">
       <Link to="#" data-action="delete" variant="danger">
@@ -19,10 +23,10 @@ function ActionButtonRender(params) {
 }
 
 function List(props) {
+  
   const [rowData, setCategoryList] = useState([]);
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log("its working");
     window.$axios
       .get(`${window.$base_url}${window.$api.get.list_category}`)
       .then((res) => {
@@ -31,8 +35,6 @@ function List(props) {
       .catch(function (error) {
         // handle error
         alert("something went wrong, please try again");
-        console.log("error catch");
-        console.log(error);
       });
   }, []);
 
@@ -55,6 +57,10 @@ function List(props) {
     { field: "category_name", headerName: "Category Name" },
     { field: "parent_category", headerName: "Parent Category" },
     { field: "keyword", headerName: "Keyword" },
+    {
+      headerName: "Action",
+      cellRenderer: ActionButtonRender,
+    },
   ]);
 
   return (

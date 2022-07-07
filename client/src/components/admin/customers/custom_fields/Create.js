@@ -62,7 +62,7 @@ function Create(props) {
   const [customField, setValues] = React.useState({
     name: "",
     location: "account",
-    type: "",
+    type: "select",
     type_value: "",
     type_value_validation: "",
     customer_group: "default",
@@ -191,7 +191,7 @@ function Create(props) {
   }
 
   const typeValueWithValidation = () => {
-    
+
       if(fieldValueType == 0){
          return (
            <>
@@ -295,7 +295,7 @@ function Create(props) {
                     </li>
                     <li>
                       <Link
-                        to="/admin/catalog/manufacturer"
+                        to="/admin/customers/custom-fields/create"
                         className="btn btn-primary"
                       >
                         <i className="fas fa-times"></i>
