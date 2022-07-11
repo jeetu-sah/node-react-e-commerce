@@ -36,6 +36,10 @@ import CustomersApprovalsList from "./customers/customer_approvals/List";
 import CustomFieldsList from "./customers/custom_fields/List";
 import CustomFieldsCreate from "./customers/custom_fields/Create";
 
+
+//import Containers.
+import CategoriesContainer from "../../containers/admin/catalog/categories/CategoriesContainer";
+
 function Admin(props) {
   return (
     <>
@@ -44,7 +48,11 @@ function Admin(props) {
         <Sidebar />
         <Routes>
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/catalog/categories" element={<Categories />} />
+          <Route
+            exact
+            path="/catalog/categories"
+            element={<CategoriesContainer />}
+          />
           <Route
             exact
             path="/catalog/categories/create"

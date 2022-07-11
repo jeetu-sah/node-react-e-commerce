@@ -17,8 +17,7 @@ import APIs from './api/api.json';
 import reportWebVitals from "./reportWebVitals";
 //import store from "./app/store";
 import store from "./app/store";
-console.log("store")
-console.log(store)
+console.log("store", store);
 
 window.$axios = axios;
 window.$base_url = process.env.REACT_APP_API_URL;

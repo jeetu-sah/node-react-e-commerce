@@ -3,7 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 export const CategoriesReducer = createSlice({
   name: "category",
   initialState: {
-    customerList: [
+    categories: [
+      { name: "Jitendra Sahu", id: 1 },
+      { name: "Aman Sahu", id: 2 },
+      { name: "Mahendra Sahu", id: 3 },
+      { name: "Mahendra Sahu", id: 4 },
+    ],
+    parentCategories: [
       { name: "Jitendra Sahu", id: 1 },
       { name: "Aman Sahu", id: 2 },
       { name: "Mahendra Sahu", id: 3 },
@@ -16,13 +22,13 @@ export const CategoriesReducer = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      console.log("customer list");
-      state.customerList = [
+       state.categoryList = [
         { name: "Jitendra Sahu", id: 1 },
         { name: "Aman Sahu", id: 2 },
         { name: "Mahendra Sahu", id: 3 },
         { name: "Mahendra Sahu", id: 4 },
       ];
+      return state;
     },
     categoryDetail: () => {
       console.log("customer details");

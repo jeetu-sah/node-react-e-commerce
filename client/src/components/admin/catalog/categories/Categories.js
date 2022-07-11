@@ -13,38 +13,42 @@ import {
   addCategory,
 } from "./../../../../app/services/reducers/CategoriesReducer";
 
-
-
-
-
 // this is a hook, but we work also with classes
-  function ActionButtonRender(params) {
-    return (
-      <span className="my-renderer">
-        <Link to="#" data-action="delete" variant="danger">
-          <i class="fas fa-trash"></i>
-        </Link>
-        &nbsp;&nbsp;
-        <Link to="#" data-action="edit" variant="primary">
-          <i class="fas fa-edit"></i>
-        </Link>
-      </span>
-    );
-  }
+function ActionButtonRender(params) {
+  return (
+    <span className="my-renderer">
+      <Link to="#" data-action="delete" variant="danger">
+        <i class="fas fa-trash"></i>
+      </Link>
+      &nbsp;&nbsp;
+      <Link to="#" data-action="edit" variant="primary">
+        <i class="fas fa-edit"></i>
+      </Link>
+    </span>
+  );
+}
 
 function Categories(props) {
-  //get the data from reducer file. by the use of useSelector hook get the data from reducer.
-  const categoryList = useSelector(
-    (state) => state.CategoriesReducer.customerList
-  );
-  console.log("counter category variable");
-  console.log(categoryList);
 
+  console.log("Props", props);
+
+  //get the data from reducer file. by the use of useSelector hook get the data from reducer.
   const [rowData, setCategoryList] = useState([]);
+  const dispatch = useDispatch();
+
+
+  //const categoryListInit = useSelector(
+    //(state) => state.CategoriesReducer
+  //);
+  //console.log("categoryListInit", categoryListInit);
+
+  useEffect(() => {
+    const categoryListResponse = dispatch(categoryList());
+    console.log(categoryListResponse);
+  }, [dispatch]);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    console.log("its working");
     window.$axios
       .get(`${window.$base_url}${window.$api.get.list_category}`)
       .then((res) => {
